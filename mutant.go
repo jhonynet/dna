@@ -23,7 +23,7 @@ var (
 // detect if []string of dna is mutant or human
 func IsMutant(dna []string) bool {
 	// set found sequences to 0
-	mutantSubsequences = 0;
+	mutantSubsequences = 0
 	// loop through Y axis
 	for row, _ := range dna {
 		// loop through X axis
