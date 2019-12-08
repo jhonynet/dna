@@ -15,13 +15,15 @@ const (
 
 var (
 	// found mutant subsequences in current scan
-	mutantSubsequences int = 0
+	mutantSubsequences int
 	// available directions
 	directions = [4]Point{{1, 0}, {1, 1}, {0, 1}, {-1, 1}}
 )
 
 // detect if []string of dna is mutant or human
-func isMutant(dna []string) bool {
+func IsMutant(dna []string) bool {
+	// set found sequences to 0
+	mutantSubsequences = 0;
 	// loop through Y axis
 	for row, _ := range dna {
 		// loop through X axis
