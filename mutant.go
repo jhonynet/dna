@@ -14,8 +14,6 @@ const (
 )
 
 var (
-	// directions evaluated before match
-	detections int = 0
 	// found mutant subsequences in current scan
 	mutantSubsequences int = 0
 	// available directions
@@ -42,7 +40,6 @@ func isMutant(dna []string) bool {
 // look mutant sequence in every direction
 func matrixSearch(dna []string, startPosition Point) {
 	for _, dir := range directions {
-		detections++
 		// get characters left in current direction
 		var leftCharsCount = getCharsLeftCount(len(dna)-1, startPosition, dir)
 		// discard current direction if chars left are less
