@@ -1,5 +1,7 @@
 package mutant
 
+import "errors"
+
 //represent an XY point
 type Point struct {
 	x int
@@ -87,6 +89,10 @@ func searchMutantSubSequence(dna []string, startPosition Point) {
 				// if current char is not equal to last char, reset
 				charCount = 1
 				lastChar = dna[pointer.y][pointer.x]
+				// fast character violation detection only 65, 84, 67, 71
+				if lastChar != 65 && lastChar != 84 && lastChar != 67 && lastChar != 71 {
+					panic(errors.New(string(dna[pointer.y][pointer.x]) + " is an invalid character"))
+				}
 			}
 		}
 
@@ -99,7 +105,7 @@ func searchMutantSubSequence(dna []string, startPosition Point) {
 
 // Get characters left in specific position
 func getCharsLeftCount(limit int, position Point, dir Point) int {
-	var left int = 0
+	left := 0
 	// increase counter while position is not out of boundaries of grid
 	for !outOfBound(position, limit) {
 		position.x += dir.x

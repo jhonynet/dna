@@ -12,7 +12,7 @@ var (
 	mutantVertical = []string{"ATGCGA", "AAGTGC", "ATATTC", "AGACGC", "GCGTCC", "TCACTG"}
 	mutantDiagonal = []string{"ATGCGA", "AAGTGC", "ATAGTC", "GGGAGC", "GGCTCC", "TCACTG"}
 	mutantBigMatrix = []string{"ATGCGAA", "CAGTGCC", "TTATGTT", "AGAAGGG", "CCCCTAA", "TCACTGG", "ATGCGAA"}
-	invalidMatrix = []string{"AGA", "GC"}
+	invalidMatrix = []string{"AGA", "GCF"}
 )
 
 func BenchmarkIsMutant(b *testing.B) {
