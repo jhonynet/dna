@@ -29,7 +29,7 @@ func IsMutant(dna []string) bool {
 		// loop through X axis
 		for col, _ := range dna[0] {
 			// search in matrix starting by current Point
-			matrixSearch(dna, Point{col, row})
+			searchMutantSubSequence(dna, Point{col, row})
 			// if is mutant return instantly to avoid overprocessing
 			if mutantSubsequences == subSequencesToBeMutant {
 				return true
@@ -39,8 +39,19 @@ func IsMutant(dna []string) bool {
 	return false
 }
 
+// detect if matrix is NxN
+func IsSquareMatrix(dna []string) bool {
+	for _, subSequence := range dna {
+		if len(subSequence) != len(dna) {
+			return false
+		}
+	}
+
+	return true
+}
+
 // look mutant sequence in every direction
-func matrixSearch(dna []string, startPosition Point) {
+func searchMutantSubSequence(dna []string, startPosition Point) {
 	for _, dir := range directions {
 		// get characters left in current direction
 		var leftCharsCount = getCharsLeftCount(len(dna)-1, startPosition, dir)
@@ -51,11 +62,11 @@ func matrixSearch(dna []string, startPosition Point) {
 		}
 		var (
 			// current point
-			pointer   Point
+			pointer Point
 			// characters repetition
 			charCount int
 			// last tested character
-			lastChar  uint8
+			lastChar uint8
 		)
 		// loop trough all characters to validate concurrent repeated characters
 		for currentPos := 0; currentPos < leftCharsCount; currentPos++ {
