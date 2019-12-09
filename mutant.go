@@ -1,7 +1,5 @@
 package mutant
 
-import "errors"
-
 //represent an XY point
 type Point struct {
 	x int
@@ -22,7 +20,7 @@ var (
 	directions = [4]Point{{1, 0}, {1, 1}, {0, 1}, {-1, 1}}
 )
 
-// detect if []string of dna is mutant or human
+// detect if []string DNA is mutant or human
 func IsMutant(dna []string) bool {
 	// set found sequences to 0
 	mutantSubsequences = 0
@@ -39,17 +37,6 @@ func IsMutant(dna []string) bool {
 		}
 	}
 	return false
-}
-
-// detect if matrix is NxN
-func IsSquareMatrix(dna []string) bool {
-	for _, subSequence := range dna {
-		if len(subSequence) != len(dna) {
-			return false
-		}
-	}
-
-	return true
 }
 
 // look mutant sequence in every direction
@@ -89,10 +76,6 @@ func searchMutantSubSequence(dna []string, startPosition Point) {
 				// if current char is not equal to last char, reset
 				charCount = 1
 				lastChar = dna[pointer.y][pointer.x]
-				// fast character violation detection only 65, 84, 67, 71
-				if lastChar != 65 && lastChar != 84 && lastChar != 67 && lastChar != 71 {
-					panic(errors.New(string(dna[pointer.y][pointer.x]) + " is an invalid character"))
-				}
 			}
 		}
 
@@ -119,4 +102,29 @@ func getCharsLeftCount(limit int, position Point, dir Point) int {
 // validate if Point is out of limits
 func outOfBound(point Point, limit int) bool {
 	return point.x > limit || point.x < 0 || point.y > limit || point.y < 0
+}
+
+// detect if matrix is NxN
+func IsSquareMatrix(dna []string) bool {
+	for _, subSequence := range dna {
+		if len(subSequence) != len(dna) {
+			return false
+		}
+	}
+
+	return true
+}
+
+// detect if []string DNA has invalid characters
+func HasInvalidCharacters(dna []string) bool {
+	for _, row := range dna {
+		// loop through X axis
+		for _, char := range row {
+			if char != 65 && char != 84 && char != 67 && char != 71 {
+				return true
+			}
+		}
+	}
+
+	return false
 }

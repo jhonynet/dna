@@ -36,8 +36,8 @@ func TestIsMutant(t *testing.T) {
 	}
 
 	for _, testCase := range testCases {
-		result := IsMutant(testCase.dna)
-		if result != testCase.isMutant {
+
+		if result := IsMutant(testCase.dna); result != testCase.isMutant {
 			t.Errorf("DNA %+v expected to be mutant? %t, got: %t",
 				testCase.dna,
 				testCase.isMutant,
@@ -49,7 +49,7 @@ func TestIsMutant(t *testing.T) {
 
 func BenchmarkIsSquareMatrix(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		IsMutant(mutantBigMatrix)
+		IsSquareMatrix(mutantBigMatrix)
 	}
 }
 
@@ -67,6 +67,32 @@ func TestIsSquareMatrix(t *testing.T) {
 			t.Errorf("In DNA %+v should be valid? %t got: %t",
 				testCase.dna,
 				testCase.isValid,
+				result,
+			)
+		}
+	}
+}
+
+func BenchmarkHasInvalidCharacters(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HasInvalidCharacters(mutantBigMatrix)
+	}
+}
+
+func TestHasInvalidCharacters(t *testing.T) {
+	testCases := []struct {
+		dna []string
+		result bool
+	}{
+		{human, false},
+		{invalidMatrix, true},
+	}
+	for _, testCase := range testCases {
+		result := HasInvalidCharacters(testCase.dna)
+		if result != testCase.result {
+			t.Errorf("DNA %+v should have invalid characters? %t got: %t",
+				testCase.dna,
+				testCase.result,
 				result,
 			)
 		}
