@@ -6,7 +6,6 @@ import (
 
 var (
 	human = []string{"ATGCGA", "AAGTGC", "ATATTT", "AGACGG", "GCGTCA", "TCACTG"}
-	humano = []string{"ATGCGA", "AAGTGC", "ATATTT", "AGACGG", "GCGTCA", "TCACTA"}
 	mutantBase = []string{"ATGCGA", "CAGTGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"}
 	mutantFastDetection = []string{"ATGCGA", "AAGTGC", "ATAGTC", "AGGAGC", "GGCTCC", "TCACTG"}
 	mutantHorizontal = []string{"AAAAGA", "CAGTGC", "TTTTGT", "AGAAGG", "CCCCTA", "TCACTG"}
