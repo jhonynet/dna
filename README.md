@@ -1,4 +1,4 @@
-#DNA Mutant Detector
+# DNA Mutant Detector
 
 Este algoritmo fue diseñado para evaluar una matriz NxN en todas las direcciones y detectar N secuencias de N caracteres (A, T, G, C) repetidos.
 
@@ -56,6 +56,6 @@ BenchmarkIsSquareMatrix-8|300000000|5.22 ns/op
 BenchmarkHasInvalidCharacters-8|30000000|55.4 ns/op
 BenchmarkBuildUniqueId-8|3000000|577 ns/op
 
-##Known Bugs
+## Known Bugs
 * Teniendo cantidad de repeticiones de caracteres configuradas por ejemplo en 4, cuando se detecta una subsecuencia de 5 caracteres iguales (en cualquier direccion), machea dos veces.
 * En una matriz del doble de los caracteres requeridos para detectar subsecuencia mutante, habiendo macheado todos los caracteres (AAAAAAAA), se detecta una sola vez en lugar de 2
