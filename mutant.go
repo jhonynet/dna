@@ -1,10 +1,19 @@
 package mutant
 
+import (
+	"crypto/sha1"
+	"encoding/hex"
+	"strings"
+)
+
 //represent an XY point
 type Point struct {
 	x int
 	y int
 }
+
+// dna
+type Dna []string
 
 const (
 	// quantity of sequences found to be mutant
@@ -21,7 +30,7 @@ var (
 )
 
 // detect if []string DNA is mutant or human
-func IsMutant(dna []string) bool {
+func IsMutant(dna Dna) bool {
 	// set found sequences to 0
 	mutantSubsequences = 0
 	// loop through Y axis
@@ -40,7 +49,7 @@ func IsMutant(dna []string) bool {
 }
 
 // look mutant sequence in every direction
-func searchMutantSubSequence(dna []string, startPosition Point) {
+func searchMutantSubSequence(dna Dna, startPosition Point) {
 	for _, dir := range directions {
 		// get characters left in current direction
 		var leftCharsCount = getCharsLeftCount(len(dna)-1, startPosition, dir)
@@ -105,7 +114,7 @@ func outOfBound(point Point, limit int) bool {
 }
 
 // detect if matrix is NxN
-func IsSquareMatrix(dna []string) bool {
+func IsSquareMatrix(dna Dna) bool {
 	for _, subSequence := range dna {
 		if len(subSequence) != len(dna) {
 			return false
@@ -115,8 +124,8 @@ func IsSquareMatrix(dna []string) bool {
 	return true
 }
 
-// detect if []string DNA has invalid characters
-func HasInvalidCharacters(dna []string) bool {
+// detect if DNA has invalid characters
+func HasInvalidCharacters(dna Dna) bool {
 	for _, row := range dna {
 		// loop through X axis
 		for _, char := range row {
@@ -127,4 +136,13 @@ func HasInvalidCharacters(dna []string) bool {
 	}
 
 	return false
+}
+
+// generate sha1 unique id
+func BuildUniqueId(dna Dna) string {
+	s := strings.Join(dna, "")
+	h := sha1.New()
+	h.Write([]byte(s))
+
+	return hex.EncodeToString(h.Sum(nil))
 }

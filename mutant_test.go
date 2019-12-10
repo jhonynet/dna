@@ -99,6 +99,32 @@ func TestHasInvalidCharacters(t *testing.T) {
 	}
 }
 
+func BenchmarkBuildUniqueId(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		BuildUniqueId(mutantBigMatrix)
+	}
+}
+
+func TestBuildUniqueId(t *testing.T) {
+	testCases := []struct {
+		dna []string
+		sha1 string
+	}{
+		{human, "4a3e32ccec6f3babc1a00f8a61fd451833ec3d2c"},
+		{mutantBigMatrix, "836b48609a33810587595ea1eb5dc7e1cff85c2d"},
+	}
+	for _, testCase := range testCases {
+		result := BuildUniqueId(testCase.dna)
+		if result != testCase.sha1 {
+			t.Errorf("DNA %+v should have an UID %s, got: %s",
+				testCase.dna,
+				testCase.sha1,
+				result,
+			)
+		}
+	}
+}
+
 func TestSearchMutantSubSequence(t *testing.T) {
 	testCases := []struct {
 		dna []string
