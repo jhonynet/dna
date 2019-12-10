@@ -49,7 +49,7 @@ func IsMutant(dna Dna) bool {
 }
 
 // look mutant sequence in every direction
-func searchMutantSubSequence(dna Dna, startPosition Point) {
+func searchMutantSubSequence(dna []string, startPosition Point) {
 	for _, dir := range directions {
 		// get characters left in current direction
 		var leftCharsCount = getCharsLeftCount(len(dna)-1, startPosition, dir)
