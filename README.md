@@ -1,5 +1,7 @@
 # DNA Mutant Detector
 
+![](https://github.com/jhonynet/dna/workflows/Go/badge.svg)
+
 Este algoritmo fue diseñado para evaluar una matriz NxN en todas las direcciones y detectar N secuencias de N caracteres (A, T, G, C) repetidos.
 
 Para validar un ADN mutante, tiene que haber _**más de una secuencia de cuatro letras iguales, de forma oblicua, horizontal o vertical**_
